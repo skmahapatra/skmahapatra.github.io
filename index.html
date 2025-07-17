@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soumya Kanti Mahapatra</title>
+    <link rel="icon" type="image/png" href="assets/img/favi.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            color: #1a202c;
+        }
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4A90E2;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .accordion-button svg {
+            transition: transform 0.3s ease;
+        }
+        .accordion-button.open svg {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-x-3 text-2xl font-bold text-gray-900">
+                <img src="assets/img/logo.png" alt="Soumya Kanti Mahapatra" class="rounded-lg shadow-2xl max-w-[40px] w-full" onerror="this.onerror=null;this.src='https://placehold.co/400x400/E2E8F0/4A5568?text=SKM';">
+                <span>Soumya Kanti Mahapatra</span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#research" class="nav-link">Research</a>
+                <a href="#publications" class="nav-link">Publications</a>
+                <a href="#skills" class="nav-link">Courses & Skills</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#home" class="block py-2 px-6 text-sm hover:bg-gray-100">Home</a>
+            <a href="#about" class="block py-2 px-6 text-sm hover:bg-gray-100">About</a>
+            <a href="#research" class="block py-2 px-6 text-sm hover:bg-gray-100">Research</a>
+            <a href="#publications" class="block py-2 px-6 text-sm hover:bg-gray-100">Publications</a>
+            <a href="#skills" class="block py-2 px-6 text-sm hover:bg-gray-100">Courses & Skills</a>
+            <a href="#contact" class="block py-2 px-6 text-sm hover:bg-gray-100">Contact</a>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Hero Section -->
+        <section id="home" class="relative min-h-screen flex items-center pt-20">
+            <!-- Background Image and Overlay -->
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('assets/img/home_bg.JPG');"></div>
+            <div class="absolute inset-0 bg-black/70"></div> <!-- Translucent overlay -->
+
+            <!-- Content -->
+            <div class="relative container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12">
+                <!-- Text Content: order-2 on mobile, order-1 on medium screens and up -->
+                <div class="md:w-3/5 mb-10 md:mb-0 text-center md:text-left order-2 md:order-1">
+                    <h1 class="text-5xl md:text-6xl font-black text-white mb-4 leading-tight fade-in-up">Welcome to my website!</h1>
+                    <p class="text-xl md:text-2xl text-gray-200 mb-8 fade-in-up text-justify" style="transition-delay: 0.2s;">I am a recent Ph.D. graduate from the Robotics and Design Lab at the Indian Institute of Science (IISc), Bangalore. My research primarily focuses on the modeling and control of cable-driven continuum robots and their various applications in complex and constrained environments.</p>
+                     <div class="fade-in-up flex flex-col items-center sm:flex-row justify-center md:justify-start gap-4" style="transition-delay: 0.4s;">
+                        <a href="#contact" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 text-center whitespace-nowrap">Get In Touch</a>
+                        <a href="#research" class="text-white font-bold py-3 px-8 rounded-full border-2 border-white hover:bg-white/20 transition-all duration-300 text-center whitespace-nowrap">View My Research</a>
+                    </div>
+                </div>
+                <!-- Image: order-1 on mobile, order-2 on medium screens and up -->
+                <div class="md:w-2/5 flex justify-center items-center fade-in-up order-1 md:order-2" style="transition-delay: 0.3s;">
+                    <img src="assets/img/SKM.jpg" alt="Soumya Kanti Mahapatra" class="rounded-full shadow-2xl max-w-[320px] w-full border-4 border-white/50" onerror="this.onerror=null;this.src='https://placehold.co/400x400/E2E8F0/4A5568?text=SKM';">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 fade-in-up">About Me</h2>
+                </div>
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-2/3 text-lg text-gray-700 space-y-4 fade-in-up" style="transition-delay: 0.2s;">
+                        <p class="text-justify">I recently graduated from the <a href="https://mecheng.iisc.ac.in/" target="_blank" style="color: blue;">Department of Mechanical Engineering</a>
+                             at the <a href="https://iisc.ac.in" target="_blank" style="color: blue;">Indian Institute of Science</a>, Bangalore obtaining a PhD in Engineering.
+                             I was associated with the Robotics and Design Lab, working under the guidance of <a href="https://mecheng.iisc.ac.in/~asitava/" target="_blank" style="color: blue;">Prof. Ashitava Ghosal</a>,
+                             where my main focus of research is on continuum robots.
+                             My research interest also includes obstacle interaction, path planning, inverse problems, and machine learning.</p>
+                       <h3 class="text-2xl font-bold text-gray-800 pt-6 pb-2">A brief history</h3>
+                        <p class="text-justify">I obtained my bachelor's degree in Mechanical Engineering from <a href="https://heritageit.edu/" target="_blank" style="color: blue;">Heritage Institute of Technology</a>, Kolkata, in 2016.
+                            I completed my master's degree in Mechanical Engineering with a specialization in Machine Design from <a href="https://www.iitism.ac.in/" target="_blank" style="color: blue;">Indian Institute of Technology (ISM), Dhanbad</a>, in 2018.
+                            I worked on modelling and control of a twin rotor MIMO system using bondgraph modelling and Adams-MATLAB co-simulation as my masters thesis under the guidance of <a href="https://www.iitism.ac.in/faculty-details?faculty=sanjoykghoshal" target="_blank" style="color: blue;">Prof. Sanjoy K. Ghoshal</a>.</p>
+                    </div>
+                    <div class="md:w-1/3 fade-in-up" style="transition-delay: 0.3s;">
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <h3 class="font-bold text-xl mb-4">Core Expertise</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-center"><span class="bg-blue-500 w-2 h-2 rounded-full mr-3"></span>Continuum Robots</li>
+                                <li class="flex items-center"><span class="bg-blue-500 w-2 h-2 rounded-full mr-3"></span>Optimization</li>
+                                <li class="flex items-center"><span class="bg-blue-500 w-2 h-2 rounded-full mr-3"></span>Inverse problems</li>
+                                <li class="flex items-center"><span class="bg-blue-500 w-2 h-2 rounded-full mr-3"></span>Obstacle interaction</li>
+                                <li class="flex items-center"><span class="bg-blue-500 w-2 h-2 rounded-full mr-3"></span>Flexible grippers</li>
+                                <li class="flex items-center"><span class="bg-blue-500 w-2 h-2 rounded-full mr-3"></span>Machine Learning</li>
+                                <li class="flex items-center"><span class="bg-blue-500 w-2 h-2 rounded-full mr-3"></span>Multi-body kinematics and dynamics</li>
+                                <li class="flex items-center"><span class="bg-blue-500 w-2 h-2 rounded-full mr-3"></span>Control theory</li>
+                                <li class="flex items-center"><span class="bg-blue-500 w-2 h-2 rounded-full mr-3"></span>Path Planning</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Section -->
+        <section id="research" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 fade-in-up">Research</h2>
+                    <p class="text-lg text-gray-600 mt-2 fade-in-up" style="transition-delay: 0.1s;">An overview of my primary research areas.</p>
+                </div>
+                <div class="max-w-6xl mx-auto space-y-8 fade-in-up" style="transition-delay: 0.2s;" id="accordion-container">
+                    
+                    <!-- PhD Research -->
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-blue-200 pb-2">PhD Research</h3>
+                        <div class="flex flex-col md:flex-row gap-8 items-center mb-8 text-lg text-gray-700">
+                            <div class="md:w-2/3 space-y-4 order-2 md:order-1">
+                                <p class="text-justify">My research explores the dynamic field of continuum robotics, inspired by nature’s flexible structures like elephant trunks and octopus arms. Unlike traditional rigid robots, continuum robots feature a compliant, flexible backbone that allows them to maneuver through cluttered, constrained spaces. This unique flexibility makes them well-suited for delicate tasks, safe human-robot interaction, and applications ranging from minimally invasive surgery to industrial inspection.</p>
+                                <p class="text-justify">I focus specifically on Cable-Driven Continuum Robots (CCRs), where a set of actuated cables controls the robot’s shape and motion. My work tackles key challenges in this domain — from developing accurate kinematic and static models for diverse CCR configurations to addressing the complexities of inverse kinematics and shape control. I also explore practical applications, including compliant robotic grippers and machine learning-based methods for enhanced control and precision. The following sections detail these key research thrusts.</p>
+                            </div>
+                            <div class="md:w-1/3 order-1 md:order-2">
+                                <img src="assets/img/CCR_vid.gif" alt="PhD Research" class="rounded-lg shadow-md w-full h-auto">
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <!-- Accordion Item 1 -->
+                            <div class="accordion-item border border-gray-200 rounded-lg">
+                                <h2>
+                                    <button type="button" class="accordion-button flex items-center justify-between w-full p-5 font-medium text-left text-gray-700 bg-gray-50 hover:bg-gray-100 rounded-lg">
+                                        <span>Kinematics of CCR</span>
+                                        <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                    </button>
+                                </h2>
+                                <div class="accordion-content">
+                                    <div class="p-5 border-t border-gray-200">
+                                        <div class="flex flex-col md:flex-row gap-6 items-center">
+                                            <div class="md:w-2/3 order-2 md:order-1">
+                                                <p class="mb-2 text-gray-600 text-justify">In this research on the kinematics of Cable-Driven Continuum Robots (CCRs), I focus on modeling and understanding the complex relationship between cable actuation and the resulting robot shape and end-effector pose. Unlike rigid robots, CCRs exhibit continuous deformation, making their kinematics inherently nonlinear and challenging. I have developed analytical and geometry-based optimization models to capture the behavior of various CCR configurations, accounting for factors such as cable routing and backbone compliance. These models not only enable precise forward and inverse kinematics solutions but also facilitate shape control, which is critical for applications requiring adaptability in constrained environments.</p>
+                                            </div>
+                                            <div class="md:w-1/3 order-1 md:order-2">
+                                                <img src="assets/img/Kinematics.png" alt="Kinematics of CCR" class="rounded-lg shadow-md w-full h-auto">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion Item 2 -->
+                            <div class="accordion-item border border-gray-200 rounded-lg">
+                                <h2>
+                                    <button type="button" class="accordion-button flex items-center justify-between w-full p-5 font-medium text-left text-gray-700 bg-gray-50 hover:bg-gray-100 rounded-lg">
+                                        <span>Interaction with obstacles and statics</span>
+                                        <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                    </button>
+                                </h2>
+                                <div class="accordion-content">
+                                    <div class="p-5 border-t border-gray-200">
+                                        <div class="flex flex-col md:flex-row gap-6 items-center">
+                                            <div class="md:w-2/3 order-2 md:order-1">
+                                                <p class="mb-2 text-gray-600 text-justify">This research extends the kinematics and statics of Cable-Driven Continuum Robots (CCRs) to environments with obstacles. The forward kinematics model was augmented with inequality constraints to represent obstacle boundaries, allowing prediction of contact points via Lagrange multipliers. A virtual work-based method was developed to estimate contact forces. The approach was experimentally validated using 3D-printed CCRs and load cell measurements, enabling accurate shape and force prediction during interaction.</p>
+                                            </div>
+                                            <div class="md:w-1/3 order-1 md:order-2">
+                                                <img src="assets/img/obstacles.png" alt="Statics of CCR" class="rounded-lg shadow-md w-full h-auto">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <!-- Accordion Item 3 -->
+                            <div class="accordion-item border border-gray-200 rounded-lg">
+                                <h2>
+                                    <button type="button" class="accordion-button flex items-center justify-between w-full p-5 font-medium text-left text-gray-700 bg-gray-50 hover:bg-gray-100 rounded-lg">
+                                        <span>Inverse problems in CCR</span>
+                                        <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                    </button>
+                                </h2>
+                                <div class="accordion-content">
+                                    <div class="p-5 border-t border-gray-200">
+                                       <div class="flex flex-col md:flex-row gap-6 items-center">
+                                            <div class="md:w-2/3 order-2 md:order-1">
+                                                <p class="mb-2 text-gray-600 text-justify">This research addresses two key inverse problems in Cable-Driven Continuum Robots (CCRs). The first involves determining a general cable routing to achieve a desired backbone shape, solved using the discretized four-bar model. The second focuses on identifying the pre-bent backbone shape that deforms into the target shape under actuation, using a strain energy minimization approach. This method also enables designing CCRs to operate effectively around obstacles.</p>
+                                            </div>
+                                            <div class="md:w-1/3 order-1 md:order-2">
+                                                <img src="assets/img/inverse.png" alt="Inverse problems in CCR" class="rounded-lg shadow-md w-full h-auto">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion Item 4 -->
+                            <div class="accordion-item border border-gray-200 rounded-lg">
+                                <h2>
+                                    <button type="button" class="accordion-button flex items-center justify-between w-full p-5 font-medium text-left text-gray-700 bg-gray-50 hover:bg-gray-100 rounded-lg">
+                                        <span>Compliant grippers</span>
+                                        <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                    </button>
+                                </h2>
+                                <div class="accordion-content">
+                                    <div class="p-5 border-t border-gray-200">
+                                        <div class="flex flex-col md:flex-row gap-6 items-center">
+                                            <div class="md:w-2/3 order-2 md:order-1">
+                                                <p class="mb-2 text-gray-600 text-justify">This research explores the application of continuum robotics principles to the design of novel, compliant grippers. The developed inverse modeling techniques enabled the design of continuum-based grippers. A three-fingered gripper was created to conform to an object’s contour, ensuring stable grasping with multiple contact points. Additionally, a cable-routed gripper was demonstrated to grasp and reorient a cube in 3D, showcasing precise shape control for manipulation tasks.</p>
+                                            </div>
+                                            <div class="md:w-1/3 order-1 md:order-2">
+                                                <img src="assets/img/gripper.png" alt="Grippers" class="rounded-lg shadow-md w-full h-auto">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Accordion Item 5 -->
+                            <div class="accordion-item border border-gray-200 rounded-lg">
+                                <h2>
+                                    <button type="button" class="accordion-button flex items-center justify-between w-full p-5 font-medium text-left text-gray-700 bg-gray-50 hover:bg-gray-100 rounded-lg">
+                                        <span>Inverse kinematics of CCR using machine learning</span>
+                                        <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                    </button>
+                                </h2>
+                                <div class="accordion-content">
+                                    <div class="p-5 border-t border-gray-200">
+                                        <div class="flex flex-col md:flex-row gap-6 items-center">
+                                            <div class="md:w-2/3 order-2 md:order-1">
+                                                <p class="mb-2 text-gray-600 text-justify">To overcome the computational complexity of traditional inverse kinematic models, this research investigates the use of machine learning and neural networks. We explored the use of feed-forward neural networks (FNNs) to solve the inverse kinematics of Cable-Driven Continuum Robots (CCRs). For CCRs with straight-routed cables, FNNs were trained effectively due to the presence of unique solutions. In cases with generally routed cables, a reconstruction-based loss function was introduced to address the problem of multiple inverse solutions. A forward kinematics model was first trained and integrated into the inverse model's training. The networks demonstrated high predictive accuracy, showcasing the promise of machine learning for CCR kinematics.</p>
+                                            </div>
+                                            <div class="md:w-1/3 order-1 md:order-2">
+                                                <img src="assets/img/FNN.png" alt="Inverse kinematics of CCR using machine learning" class="rounded-lg shadow-md w-full h-auto">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Master's Thesis -->
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-blue-200 pb-2">Master's Thesis</h3>
+                        <div class="space-y-4">
+                            <!-- Accordion Item 6 -->
+                            <div class="accordion-item border border-gray-200 rounded-lg">
+                                <h2>
+                                    <button type="button" class="accordion-button flex items-center justify-between w-full p-5 font-medium text-left text-gray-700 bg-gray-50 hover:bg-gray-100 rounded-lg">
+                                        <span>Modelling and control of a Twin Rotor MIMO system</span>
+                                        <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                                    </button>
+                                </h2>
+                                <div class="accordion-content">
+                                    <div class="p-5 border-t border-gray-200">
+                                        <div class="flex flex-col md:flex-row gap-6 items-center">
+                                            <div class="md:w-2/3 order-2 md:order-1">
+                                                <p class="mb-2 text-gray-600 text-justify">This work focuses on a classic control systems problem: the Twin Rotor Multiple-Input Multiple-Output (MIMO) system, which serves as a laboratory model for helicopter flight dynamics. The research involves deriving a comprehensive dynamic model using bond graph techniques and developing advanced control strategies. The goal is to achieve stable and precise control over the helicopter's pitch and yaw angles through co-simulation with Adams and MATLAB as well as bondgraph separately, addressing the system's cross-coupling and nonlinearities.</p>
+                                            </div>
+                                            <div class="md:w-1/3 order-1 md:order-2">
+                                                <img src="assets/img/TRMS.png" alt="Twin Rotor MIMO system" class="rounded-lg shadow-md w-full h-auto">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 fade-in-up">Publications</h2>
+                    <p class="text-lg text-gray-600 mt-2 fade-in-up" style="transition-delay: 0.1s;">My contributions to the scientific community.</p>
+                </div>
+                <div class="max-w-4xl mx-auto space-y-12">
+                    <!-- Journals -->
+                    <div class="fade-in-up" style="transition-delay: 0.2s;">
+                        <h3 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-blue-200 pb-2">Journal</h3>
+                        <div class="space-y-8">
+                            <div class="publication-item bg-white p-6 rounded-lg shadow-md">
+                                <p class="text-gray-700 publication-desc text-justify">
+                                    <span class="font-bold publication-title">Modelling, simulations and experiments with generally routed cable-driven continuum robots and their application to three-fingered grippers.</span>
+                                    <span class="italic">S. K. Mahapatra, and A. Ghosal.</span> Robotica, pp. 1-16, 2024.
+                                </p>
+                                <a href="https://doi.org/10.1017/S0263574724000651" target="_blank" class="inline-block mt-4 bg-blue-600 text-white font-semibold py-2 px-4 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">Link to Paper</a>
+                            </div>
+                            <div class="publication-item bg-white p-6 rounded-lg shadow-md">
+                                <p class="text-gray-700 publication-desc text-justify">
+                                    <span class="font-bold publication-title">Profile and contact force estimation of cable-driven continuum robots in presence of obstacles.</span>
+                                    <span class="italic">K. P. Ashwin, S. K. Mahapatra, and A. Ghosal.</span> Mechanism and Machine Theory, vol. 164, p. 104404, 2021.
+                                </p>
+                                <a href="https://doi.org/10.1016/j.mechmachtheory.2021.104404" target="_blank" class="inline-block mt-4 bg-blue-600 text-white font-semibold py-2 px-4 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">Link to Paper</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conference/Symposium -->
+                    <div class="fade-in-up" style="transition-delay: 0.3s;">
+                        <h3 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-blue-200 pb-2">Conference/Symposium</h3>
+                        <div class="space-y-8">
+                            <div class="publication-item bg-white p-6 rounded-lg shadow-md">
+                                <p class="text-gray-700 publication-desc text-justify">
+                                    <span class="font-bold publication-title">Modelling of cable-driven continuum robots with multiple generally routed cables.</span>
+                                    <span class="italic">S. K. Mahapatra, and A. Ghosal.</span> Recent Advances in Machines, Mechanisms, Materials and Design, iNaCoMM 2023, pp. 803-810, 2024.
+                                </p>
+                                <a href="https://doi.org/10.1007/978-981-97-5423-6_64" target="_blank" class="inline-block mt-4 bg-blue-600 text-white font-semibold py-2 px-4 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">Link to Paper</a>
+                            </div>
+                            <div class="publication-item bg-white p-6 rounded-lg shadow-md">
+                                <p class="text-gray-700 publication-desc text-justify mb-4">
+                                    <span class="font-bold publication-title">Obtaining desired shapes of cable-riven continuum robots using general cable routing.</span>
+                                    <span class="italic">S. K. Mahapatra, and A. Ghosal.</span> Advances in Mechanism and Machine Science, IFToMM WC 2023, pp. 130-138, 2023.
+                                </p>
+                                <div class="flex items-center gap-4">
+                                    <a href="https://doi.org/10.1007/978-3-031-45770-8_13" target="_blank" class="inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">Link to Paper</a>
+                                    <div class="bg-blue-100 text-blue-800 text-sm font-semibold p-2 rounded-md whitespace-nowrap">
+                                        IFToMM YDP grant
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="publication-item bg-white p-6 rounded-lg shadow-md">
+                                <p class="text-gray-700 publication-desc text-justify mb-4">
+                                    <span class="font-bold publication-title">Modelling of cable-driven continuum robots with General Cable Routing: A comparison.</span>
+                                    <span class="italic">S. K. Mahapatra, K. P. Ashwin, and A. Ghosal.</span> Advances in Asian Mechanism and Machine Science, Asian MMS 2021, pp. 145-153, 2021.
+                                </p>
+                                <div class="flex items-center gap-4">
+                                    <a href="https://doi.org/10.1007/978-3-030-91892-7_32" target="_blank" class="inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">Link to Paper</a>
+                                    <div class="bg-blue-100 text-blue-800 text-sm font-semibold p-2 rounded-md whitespace-nowrap">
+                                        Best reseach paper award
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="publication-item bg-white p-6 rounded-lg shadow-md">
+                                <p class="text-gray-700 publication-desc text-justify mb-4">
+                                    <span class="font-bold publication-title">Using neural networks for the kinematics of closed loop mechanisms and serial robots.</span>
+                                    <span class="italic">S. K. Mahapatra, N. K. Maddu, and A. Ghosal.</span> in MMT Symposium 2024, Guimaraes, Portugal.
+                                </p>
+                                <div class="flex items-center gap-4">
+                                    <a href="#" target="_blank" class="inline-block bg-blue-600 text-white font-semibold py-2 px-4 rounded-full hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">Link to Paper</a>
+                                    <div class="bg-blue-100 text-blue-800 text-sm font-semibold p-2 rounded-md whitespace-nowrap">
+                                        IFToMM YDP grant
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="publication-item bg-white p-6 rounded-lg shadow-md">
+                                <p class="text-gray-700 publication-desc text-justify">
+                                    <span class="font-bold publication-title">Forward and inverse kinematics of cable-driven continuum robots.</span>
+                                    <span class="italic">S. K. Mahapatra, and A. Ghosal.</span> in the 8<sup>th</sup> International Workshop on Computational Kinematics (CK 2025), IIT Madras.
+                                </p>
+                                <a href="#" target="_blank" class="inline-block mt-4 bg-gray-400 text-white font-semibold py-2 px-4 rounded-full hover:bg-gray-500 transition-all duration-300 transform hover:scale-105">Under review</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pre-prints -->
+                    <div class="fade-in-up" style="transition-delay: 0.4s;">
+                        <h3 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-blue-200 pb-2">Pre-prints</h3>
+                        <div class="space-y-8">
+                           <div class="publication-item bg-white p-6 rounded-lg shadow-md">
+                                <p class="text-gray-700 publication-desc text-justify">
+                                    <span class="font-bold publication-title">3D printed cable-driven continuum robots with generally routed cables: modeling and experiments.</span>
+                                    <span class="italic">S. K. Mahapatra, K. P. Ashwin, and A. Ghosal.</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conferences and Symposiums Attended -->
+                    <div class="fade-in-up" style="transition-delay: 0.5s;">
+                        <h3 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-blue-200 pb-2">Other Conferences/Symposiums attended</h3>
+                        <div class="space-y-4">
+                            <!--
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <p class="text-gray-700 text-justify mb-4">
+                                    <span class="font-bold">Mechanism and Machine Theory Symposium (MMT Symposium 2024)</span><br>
+                                    <span class="italic">Presenter, University of Minho, Guimarães, Portugal - 2024</span>
+                                </p>
+                                <div class="bg-blue-100 text-blue-800 text-sm font-semibold p-2 rounded-md inline-block">
+                                    IFToMM YDP grant
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <p class="text-gray-700 text-justify">
+                                    <span class="font-bold">6<sup>th</sup> International and 21<sup>th</sup> National Conference on Machines and Mechanisms (iNaCoMM 2023)</span><br>
+                                    <span class="italic">Presenter, NIT Raipur, India - 2023</span>
+                                </p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <p class="text-gray-700 text-justify mb-4">
+                                    <span class="font-bold">16<sup>th</sup> World Congress of the International Federation for the Promotion of Mechanism and Machine Science (IFToMM WC 2023)</span><br>
+                                    <span class="italic">Presenter, Tokyo, Japan - 2023</span>
+                                </p>
+                                <div class="bg-blue-100 text-blue-800 text-sm font-semibold p-2 rounded-md inline-block">
+                                    IFToMM YDP grant
+                                </div>
+                            </div>
+                            -->
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <p class="text-gray-700 text-justify">
+                                    <span class="font-bold">ME@75 Research Frontiers Conference</span><br>
+                                    <span class="italic">Presenter & Organizer, Indian Institute of Sciecne, bangalore, India - 2022</span>
+                                </p>
+                            </div>
+                            <!--
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <p class="text-gray-700 text-justify mb-4">
+                                    <span class="font-bold">7<sup>th</sup> IFToMM Conference on Asian Mechanism and Machine Science (Asian MMS 2021)</span><br>
+                                    <span class="italic">Presenter, Hanio, Vietnam - 2021</span>
+                                </p>
+                                <div class="bg-blue-100 text-blue-800 text-sm font-semibold p-2 rounded-md inline-block">
+                                    Best research paper award
+                                </div>
+                            </div>
+                            -->
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <p class="text-gray-700 text-justify">
+                                    <span class="font-bold">4<sup>th</sup> International and 19<sup>th</sup> National Conference on Machines and Mechanisms (iNaCoMM 2019)</span><br>
+                                    <span class="italic">Attendee, IIT Mandi, India - 2019</span>
+                                </p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <p class="text-gray-700 text-justify">
+                                    <span class="font-bold">6<sup>th</sup> IFToMM Conference on Asian Mechanism and Machine Science (Asian MMS 2018)</span><br>
+                                    <span class="italic">Organizer, Indian Institute of Sciecne, Bangalore, India - 2018</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses, Teaching and Skills Section -->
+        <section id="skills" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 fade-in-up">Courses, Teaching and Skills</h2>
+                </div>
+                <div class="max-w-6xl mx-auto space-y-12 fade-in-up" style="transition-delay: 0.2s;">
+                    
+                    <!-- Major Courses -->
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-blue-200 pb-2">Major Courses Completed</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-lg text-gray-700">
+                            <div class="bg-gray-50 p-4 rounded-lg">Robotics (Basics and Advanced)</div>
+                            <div class="bg-gray-50 p-4 rounded-lg">Kinematics and Dynamics of Mechanical systems</div>
+                            <div class="bg-gray-50 p-4 rounded-lg">Applied Dynamics</div>
+                            <div class="bg-gray-50 p-4 rounded-lg">Enginnering Mathematics (Tensors, ODE, Complex analysis)</div>
+                            <div class="bg-gray-50 p-4 rounded-lg">Advanced numerical methods and statistics</div>
+                            <div class="bg-gray-50 p-4 rounded-lg">Machine Learning</div>
+                            <div class="bg-gray-50 p-4 rounded-lg">Variation methods and structural optimization</div>
+                            <div class="bg-gray-50 p-4 rounded-lg">Finite Element Analysis</div>
+                            <div class="bg-gray-50 p-4 rounded-lg">Geometric modelling for CAD</div>
+                            <div class="bg-gray-50 p-4 rounded-lg">Advanced Mechanics of Solids</div>
+                            <div class="bg-gray-50 p-4 rounded-lg">Automation and Control</div>
+                            <div class="bg-gray-50 p-4 rounded-lg">Mechanical vibration and control</div>
+                        </div>
+                    </div>
+
+                    <!-- Teaching Assistantships -->
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-blue-200 pb-2">Teaching Assistantships</h3>
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8 text-lg text-gray-700">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <p class="font-semibold">Robotics</p>
+                                <ul class="mt-2 space-y-1 pl-4 list-disc list-inside">
+                                    <li class="italic">NPTEL: 2021-2025</li>
+                                    <li class="italic">IISc: 2021-2022 </li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <p class="font-semibold">Dynamics and Control</p>
+                                <ul class="mt-2 space-y-1 pl-4 list-disc list-inside">
+                                    <li class="italic">NPTEL: 2022-2025</li>
+                                    <li class="italic">IISc: 2021</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills -->
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-blue-200 pb-2">Skills</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-lg text-gray-700">
+                            <div class="bg-gray-50 p-4 rounded-lg"><strong>Programming:</strong> MATLAB, Python, LaTeX, C</div>
+                            <div class="bg-gray-50 p-4 rounded-lg"><strong>Math tools:</strong> MATLAB-Simulink, Maple</div>
+                            <div class="bg-gray-50 p-4 rounded-lg"><strong>Software:</strong> SolidWorks, CATIA, AutoCAD, Simscape, Adams, Illustrator, Photoshop, Origin</div>
+                            <div class="bg-gray-50 p-4 rounded-lg"><strong>Hardware:</strong> 3D Printing, Arduino, Raspberry Pi</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-gray-900 fade-in-up">Contact</h2>
+                </div>
+                <div class="max-w-6xl mx-auto fade-in-up" style="transition-delay: 0.2s;">
+                    <!-- Address, Email, and Map -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-12">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Address</h3>
+                            <address class="text-lg text-gray-600 not-italic mb-8">
+                                Room No - 209, Robotics and Design Lab,<br>
+                                Department of Mechanical Engineering,<br>
+                                Indian Institute of Science,<br>
+                                Bangalore, Karnataka 560012, INDIA
+                            </address>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Email</h3>
+                            <div class="flex flex-col items-start space-y-4">
+                                <img src="https://placehold.co/400x90/transparent/000000?text=soumya.partha@gmail.com\nskmahapatra.iisc@gmail.com" alt="Email address one">
+                            </div>
+                        </div>
+                        <div>
+                            <iframe src="https://maps.google.com/maps?q=13.015,77.571444&z=15&output=embed" width="100%" height="100%" style="border:0; min-height: 350px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="rounded-lg shadow-md"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Other Links -->
+                     <div class="text-center mb-12">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Other Links</h3>
+                        <div class="flex justify-around items-center w-full max-w-lg mx-auto">
+                            
+                            <a href="https://www.linkedin.com/in/soumyakantimahapatra/" class="flex flex-col items-center text-gray-600 hover:text-blue-600 transition-colors" title="LinkedIn">
+                                <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                                <span class="block mt-2">LinkedIn</span>
+                            </a>
+                            <a href="https://scholar.google.com/citations?user=Ml5wRzoAAAAJ&hl=en" class="flex flex-col items-center text-center text-gray-600 hover:text-blue-600 transition-colors" title="Google Scholar">
+                                <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.242 13.769L0 9.5L12 0l12 9.5l-5.242 4.269C17.548 11.249 14.978 9 12 9s-5.548 2.249-6.758 4.769zM12 10c-3.313 0-6 2.687-6 6s2.687 6 6 6 6-2.687 6-6-2.687-6-6-6z"></path></svg>
+                                <span class="block mt-2">Google Scholar</span>
+                            </a>
+                            <a href="https://github.com/skmahapatra" class="flex flex-col items-center text-gray-600 hover:text-blue-600 transition-colors" title="GitHub">
+                                <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.852 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"></path></svg>
+                                <span class="block mt-2">GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-4 text-center">
+            <p>&copy; 2025 Soumya Kanti Mahapatra. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Basic Page Interactivity ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        const faders = document.querySelectorAll('.fade-in-up');
+        const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+        faders.forEach(fader => appearOnScroll.observe(fader));
+
+        const sections = document.querySelectorAll("section");
+        const navLi = document.querySelectorAll("nav a.nav-link");
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 68) {
+                    current = section.getAttribute("id");
+                }
+            });
+            navLi.forEach((a) => {
+                a.classList.remove("active");
+                if (a.getAttribute('href') === `#${current}`) {
+                    a.classList.add("active");
+                }
+            });
+        });
+
+        // --- Accordion Logic for Research Section ---
+        const accordionContainer = document.getElementById('accordion-container');
+        if (accordionContainer) {
+            const accordionButtons = accordionContainer.querySelectorAll('.accordion-button');
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.parentElement.nextElementSibling;
+                    const isOpening = !button.classList.contains('open');
+
+                    // Close all other items
+                    accordionButtons.forEach(otherButton => {
+                        if (otherButton !== button) {
+                            otherButton.classList.remove('open');
+                            otherButton.parentElement.nextElementSibling.style.maxHeight = null;
+                            otherButton.parentElement.nextElementSibling.style.paddingTop = "0px";
+                            otherButton.parentElement.nextElementSibling.style.paddingBottom = "0px";
+                        }
+                    });
+
+                    // Open/Close the clicked item
+                    if (isOpening) {
+                        button.classList.add('open');
+                        content.style.paddingTop = "1.25rem"; 
+                        content.style.paddingBottom = "1.25rem";
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    } else {
+                        button.classList.remove('open');
+                        content.style.maxHeight = null;
+                        content.style.paddingTop = "0px";
+                        content.style.paddingBottom = "0px";
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
