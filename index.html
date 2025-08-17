@@ -51,6 +51,54 @@
         .accordion-button.open svg {
             transform: rotate(45deg);
         }
+        
+        /* --- Scroller Styles --- */
+        .scroller-container {
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+            -webkit-mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+            mask: linear-gradient(90deg, transparent, white 10%, white 90%, transparent);
+        }
+
+        .scroller {
+            display: flex;
+            flex-wrap: nowrap;
+            width: max-content;
+            animation: scroll 40s linear infinite;
+        }
+
+        .scroller:hover {
+            animation-play-state: paused;
+        }
+
+        .scroller-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1.5rem;
+            margin: 0 0.5rem;
+            background-color: rgba(97, 175, 239, 0.1);
+            border: 1px solid rgba(97, 175, 239, 0.3);
+            border-radius: 9999px;
+            color: #c5c8c9;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: background-color 0.3s;
+        }
+
+        .scroller-item:hover {
+            background-color: rgba(97, 175, 239, 0.2);
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                /* The scroller content is duplicated, so we translate by -50% of the total width for a seamless loop */
+                transform: translateX(-50%);
+            }
+        }
     </style>
 </head>
 <body class="bg-[#1f2428] text-[#c5c8c9]">
@@ -92,7 +140,36 @@
             <div class="absolute inset-0 bg-black/70"></div> <div class="relative container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12">
                 <div class="md:w-3/5 mb-10 md:mb-0 text-center md:text-left order-2 md:order-1 -mt-10 md:mt-0">
                     <h1 class="text-4xl md:text-6xl font-black text-white mb-4 leading-tight fade-in-up">Welcome to my website!</h1>
-                    <p class="text-xl md:text-2xl text-gray-200 mb-8 fade-in-up text-justify" style="transition-delay: 0.2s;">I am the Lead Robotics Engineer at Cosmoserve Space and a recent Ph.D. graduate from IISc Bangalore, specializing in Continuum Robots. My work spans kinematics, dynamics, inverse problems, and machine learning, with expertise in Python, MATLAB, and optimization-based modeling and control. Passionate about advancing robotics through interdisciplinary research, I focus on developing next-generation systems for space debris removal while building models and simulations that bridge theory with real-world applications.</p>
+                    <p class="text-xl md:text-2xl text-gray-200 mb-8 fade-in-up text-justify" style="transition-delay: 0.2s;">I’m the Lead Robotics Engineer at Cosmoserve Space and a recent Ph.D. graduate from IISc Bangalore. My research focuses on continuum robots, spanning kinematics, dynamics, and machine learning. I’m passionate about building next-generation robotic systems for space debris removal and creating models and simulations that connect theory with real-world applications.</p>
+                    
+                    <!-- Core Expertise Scroller -->
+                    <div class="my-8 fade-in-up text-left" style="transition-delay: 0.3s;">
+                        <h3 class="font-bold text-2xl mb-4 text-white">Core Expertise</h3>
+                        <div class="scroller-container">
+                            <div class="scroller">
+                                <span class="scroller-item">Continuum Robots</span>
+                                <span class="scroller-item">Optimization</span>
+                                <span class="scroller-item">Inverse problems</span>
+                                <span class="scroller-item">Obstacle interaction</span>
+                                <span class="scroller-item">Flexible grippers</span>
+                                <span class="scroller-item">Machine Learning</span>
+                                <span class="scroller-item">Multi-body kinematics and dynamics</span>
+                                <span class="scroller-item">Control theory</span>
+                                <span class="scroller-item">Path Planning</span>
+                                <!-- Duplicated for seamless scroll -->
+                                <span class="scroller-item">Continuum Robots</span>
+                                <span class="scroller-item">Optimization</span>
+                                <span class="scroller-item">Inverse problems</span>
+                                <span class="scroller-item">Obstacle interaction</span>
+                                <span class="scroller-item">Flexible grippers</span>
+                                <span class="scroller-item">Machine Learning</span>
+                                <span class="scroller-item">Multi-body kinematics and dynamics</span>
+                                <span class="scroller-item">Control theory</span>
+                                <span class="scroller-item">Path Planning</span>
+                            </div>
+                        </div>
+                    </div>
+
                      <div class="fade-in-up flex flex-col items-center sm:flex-row justify-center md:justify-start gap-4" style="transition-delay: 0.4s;">
                         <a href="#contact" class="bg-[#61afef] text-white font-bold py-3 px-8 rounded-full hover:bg-[#5295c9] transition-all duration-300 transform hover:scale-105 text-center whitespace-nowrap">Get In Touch</a>
                         <a href="#research" class="text-white font-bold py-3 px-8 rounded-full border-2 border-white hover:bg-white/20 transition-all duration-300 text-center whitespace-nowrap">View My Research</a>
@@ -110,8 +187,8 @@
                     <h2 class="text-4xl font-bold text-white fade-in-up">About Me</h2>
                     <p class="text-lg text-gray-400 mt-2 fade-in-up" style="transition-delay: 0.1s;">My professional and academic journey.</p>
                 </div>
-                <div class="flex flex-col md:flex-row gap-12">
-                    <div class="md:w-2/3">
+                <div class="flex">
+                    <div class="w-full">
                         <h3 class="text-3xl font-bold text-white mb-6 border-b-2 border-[#61afef] pb-2">Professional Experience</h3>
                         <div class="mb-8 pl-4 border-l-4 border-[#61afef] fade-in-up">
                             <h3 class="text-2xl font-bold text-white">Lead Robotics Engineer</h3>
@@ -141,22 +218,6 @@
                             <h3 class="text-2xl font-bold text-white">B.Tech in Mechanical Engineering</h3>
                             <p class="text-md text-gray-400 mb-2">2012 - 2016 | <a href="https://heritageit.edu/" target="_blank" class="text-[#61afef] hover:underline">Heritage Institute of Technology, Kolkata</a></p>
                             <p class="text-lg text-gray-300 text-justify">Acquired a strong foundation in mechanical engineering principles, nurturing a passion for robotics and control systems through core coursework and hands-on projects.</p>
-                        </div>
-                    </div>
-                    <div class="md:w-1/3 fade-in-up" style="transition-delay: 0.3s;">
-                        <div class="bg-[#1f2428] p-6 rounded-lg shadow-lg">
-                            <h3 class="font-bold text-xl mb-4 text-white">Core Expertise</h3>
-                            <ul class="space-y-2 text-gray-300">
-                                <li class="flex items-center"><span class="bg-[#61afef] w-2 h-2 rounded-full mr-3"></span>Continuum Robots</li>
-                                <li class="flex items-center"><span class="bg-[#61afef] w-2 h-2 rounded-full mr-3"></span>Optimization</li>
-                                <li class="flex items-center"><span class="bg-[#61afef] w-2 h-2 rounded-full mr-3"></span>Inverse problems</li>
-                                <li class="flex items-center"><span class="bg-[#61afef] w-2 h-2 rounded-full mr-3"></span>Obstacle interaction</li>
-                                <li class="flex items-center"><span class="bg-[#61afef] w-2 h-2 rounded-full mr-3"></span>Flexible grippers</li>
-                                <li class="flex items-center"><span class="bg-[#61afef] w-2 h-2 rounded-full mr-3"></span>Machine Learning</li>
-                                <li class="flex items-center"><span class="bg-[#61afef] w-2 h-2 rounded-full mr-3"></span>Multi-body kinematics and dynamics</li>
-                                <li class="flex items-center"><span class="bg-[#61afef] w-2 h-2 rounded-full mr-3"></span>Control theory</li>
-                                <li class="flex items-center"><span class="bg-[#61afef] w-2 h-2 rounded-full mr-3"></span>Path Planning</li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -583,6 +644,11 @@
                             <a href="https://github.com/skmahapatra" class="text-gray-400 hover:text-[#61afef] transition-colors" title="GitHub">
                                 <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 640 640" aria-hidden="true">
                                     <path d="M237.9 461.4C237.9 463.4 235.6 465 232.7 465C229.4 465.3 227.1 463.7 227.1 461.4C227.1 459.4 229.4 457.8 232.3 457.8C235.3 457.5 237.9 459.1 237.9 461.4zM206.8 456.9C206.1 458.9 208.1 461.2 211.1 461.8C213.7 462.8 216.7 461.8 217.3 459.8C217.9 457.8 216 455.5 213 454.6C210.4 453.9 207.5 454.9 206.8 456.9zM251 455.2C248.1 455.9 246.1 457.8 246.4 460.1C246.7 462.1 249.3 463.4 252.3 462.7C255.2 462 257.2 460.1 256.9 458.1C256.6 456.2 253.9 454.9 251 455.2zM316.8 72C178.1 72 72 177.3 72 316C72 426.9 141.8 521.8 241.5 555.2C254.3 557.5 258.8 549.6 258.8 543.1C258.8 536.9 258.5 502.7 258.5 481.7C258.5 481.7 188.5 496.7 173.8 451.9C173.8 451.9 162.4 422.8 146 415.3C146 415.3 123.1 399.6 147.6 399.9C147.6 399.9 172.5 401.9 186.2 425.7C208.1 464.3 244.8 453.2 259.1 446.6C261.4 430.6 267.9 419.5 275.1 412.9C219.2 406.7 162.8 398.6 162.8 302.4C162.8 274.9 170.4 261.1 186.4 243.5C183.8 237 175.3 210.2 189 175.6C209.9 169.1 258 202.6 258 202.6C278 197 299.5 194.1 320.8 194.1C342.1 194.1 363.6 197 383.6 202.6C383.6 202.6 431.7 169 452.6 175.6C466.3 210.3 457.8 237 455.2 243.5C471.2 261.2 481 275 481 302.4C481 398.9 422.1 406.6 366.2 412.9C375.4 420.8 383.2 435.8 383.2 459.3C383.2 493 382.9 534.7 382.9 542.9C382.9 549.4 387.5 557.3 400.2 555C500.2 521.8 568 426.9 568 316C568 177.3 455.5 72 316.8 72zM169.2 416.9C167.9 417.9 168.2 420.2 169.9 422.1C171.5 423.7 173.8 424.4 175.1 423.1C176.4 422.1 176.1 419.8 174.4 417.9C172.8 416.3 170.5 415.6 169.2 416.9zM158.4 408.8C157.7 410.1 158.7 411.7 160.7 412.7C162.3 413.7 164.3 413.4 165 412C165.7 410.7 164.7 409.1 162.7 408.1C160.7 407.5 159.1 407.8 158.4 408.8zM190.8 444.4C189.2 445.7 189.8 448.7 192.1 450.6C194.4 452.9 197.3 453.2 198.6 451.6C199.9 450.3 199.3 447.3 197.3 445.4C195.1 443.1 192.1 442.8 190.8 444.4zM179.4 429.7C177.8 430.7 177.8 433.3 179.4 435.6C181 437.9 183.7 438.9 185 437.9C186.6 436.6 186.6 434 185 431.7C183.6 429.4 181 428.4 179.4 429.7z"></path>
+                                </svg>
+                            </a>
+                            <a href="https://orcid.org/0000-0002-0827-2268" class="text-gray-400 hover:text-[#61afef] transition-colors" title="Orcid">
+                                <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 640 640" aria-hidden="true">
+                                    <path d="M358.7 252.2L312.8 252.2L312.8 406L360.3 406C427.9 406 443.4 354.7 443.4 329.1C443.4 287.5 416.9 252.2 358.7 252.2zM320 72C183 72 72 183 72 320C72 457 183 568 320 568C457 568 568 457 568 320C568 183 457 72 320 72zM239.2 432.8L209.4 432.8L209.4 225.3L239.2 225.3L239.2 432.8zM224.3 162.5C235.1 162.5 243.9 171.3 243.9 182.1C243.9 192.9 235.1 201.7 224.3 201.7C213.5 201.7 204.7 192.9 204.7 182.1C204.7 171.3 213.5 162.5 224.3 162.5zM364 433L283 433L283 225.3L363.6 225.3C440.3 225.3 474 280.1 474 329.2C474 382.5 432.3 433.1 364 433.1z"></path>
                                 </svg>
                             </a>
                             <a href="https://www.youtube.com/soumyakantimahapatra" class="text-gray-400 hover:text-[#61afef] transition-colors" title="YouTube">
