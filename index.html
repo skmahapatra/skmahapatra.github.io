@@ -95,16 +95,41 @@
                 transform: translateX(0);
             }
             to {
-                /* The scroller content is duplicated, so we translate by -50% of the total width for a seamless loop */
                 transform: translateX(-50%);
             }
+        }
+
+        /* --- Hamburger Menu Animation --- */
+        .hamburger-line {
+            position: absolute;
+            left: 0;
+            width: 80%;
+            height: 4px; /* Increased thickness */
+            background-color: white;
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+        .top-line { top: 6px; }
+        .middle-line { top: 15px; }
+        .bottom-line { top: 24px; }
+
+        #mobile-menu-button.open .top-line {
+            transform: rotate(45deg);
+            top: 15px;
+        }
+        #mobile-menu-button.open .middle-line {
+            opacity: 0;
+        }
+        #mobile-menu-button.open .bottom-line {
+            transform: rotate(-45deg);
+            top: 15px;
         }
     </style>
 </head>
 <body class="bg-[#1f2428] text-[#c5c8c9]">
 
     <header id="header" class="bg-[#1f2428]/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-md">
-        <div class="container mx-auto px-4 sm:px-6 py-2 flex justify-between items-center">
+        <div class="container mx-auto px-4 sm:px-6 py-2 flex justify-between items-center h-16">
             <a href="#" class="flex items-center gap-x-3 text-xl sm:text-2xl font-bold text-white">
                 <img src="assets/img/logo.png" alt="Soumya Kanti Mahapatra" class="rounded-lg shadow-2xl max-w-[40px] w-full" onerror="this.onerror=null;this.src='https://placehold.co/400x400/E2E8F0/4A5568?text=SKM';">
                 <span class="leading-tight">Soumya Kanti Mahapatra</span>
@@ -118,18 +143,20 @@
                 <a href="#skills" class="nav-link text-white">Courses & Skills</a>
                 <a href="#contact" class="nav-link text-white">Contact</a>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none z-50 relative w-8 h-8">
+                <span class="hamburger-line top-line"></span>
+                <span class="hamburger-line middle-line"></span>
+                <span class="hamburger-line bottom-line"></span>
             </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-[#1f2428]">
-            <a href="#home" class="block py-2 px-6 text-sm text-white hover:bg-[#282c34]">Home</a>
-            <a href="#about" class="block py-2 px-6 text-sm text-white hover:bg-[#282c34]">About</a>
-            <a href="#research" class="block py-2 px-6 text-sm text-white hover:bg-[#282c34]">Research</a>
-            <a href="#publications" class="block py-2 px-6 text-sm text-white hover:bg-[#282c34]">Publications</a>
-            <a href="#other-projects" class="block py-2 px-6 text-sm text-white hover:bg-[#282c34]">Other Projects</a>
-            <a href="#skills" class="block py-2 px-6 text-sm text-white hover:bg-[#282c34]">Courses & Skills</a>
-            <a href="#contact" class="block py-2 px-6 text-sm text-white hover:bg-[#282c34]">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-[#282c34]">
+            <a href="#home" class="block py-2 px-6 text-sm text-white hover:bg-[#1f2428]">Home</a>
+            <a href="#about" class="block py-2 px-6 text-sm text-white hover:bg-[#1f2428]">About</a>
+            <a href="#research" class="block py-2 px-6 text-sm text-white hover:bg-[#1f2428]">Research</a>
+            <a href="#publications" class="block py-2 px-6 text-sm text-white hover:bg-[#1f2428]">Publications</a>
+            <a href="#other-projects" class="block py-2 px-6 text-sm text-white hover:bg-[#1f2428]">Other Projects</a>
+            <a href="#skills" class="block py-2 px-6 text-sm text-white hover:bg-[#1f2428]">Courses & Skills</a>
+            <a href="#contact" class="block py-2 px-6 text-sm text-white hover:bg-[#1f2428]">Contact</a>
         </div>
     </header>
 
@@ -690,13 +717,20 @@
         // --- Basic Page Interactivity ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+
+        const closeMobileMenu = () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.classList.remove('open');
+        };
+
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.classList.toggle('open');
         });
 
         document.querySelectorAll('#mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+                closeMobileMenu();
             });
         });
 
